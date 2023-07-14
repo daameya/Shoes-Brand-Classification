@@ -15,8 +15,8 @@ stages:
       params.yaml:
         CLASSES: 3
         IMAGE_SIZE:
-        - 300
-        - 300
+        - 240
+        - 240
         - 3
         INCLUDE_TOP: false
         LEARNING_RATE: 0.0001
@@ -24,8 +24,8 @@ stages:
     outs:
     - path: artifacts/prepare_base_model
       hash: md5
-      md5: 8b7bba224331e1e2c63d8a2a6b0c0f12.dir
-      size: 177725168
+      md5: 8c45f454a2d641b01fb1196e68b9be59.dir
+      size: 189575288
       nfiles: 2
   data_ingestion:
     cmd: python src/shoes_brand_classification/pipeline/stage01_data_ingestion.py
@@ -54,8 +54,8 @@ stages:
       nfiles: 825
     - path: artifacts/prepare_base_model
       hash: md5
-      md5: 8b7bba224331e1e2c63d8a2a6b0c0f12.dir
-      size: 177725168
+      md5: 8c45f454a2d641b01fb1196e68b9be59.dir
+      size: 189575288
       nfiles: 2
     - path: config/config.yaml
       hash: md5
@@ -73,16 +73,16 @@ stages:
       params.yaml:
         AUGMENTATION: true
         BATCH_SIZE: 32
-        EPOCHS: 10
+        EPOCHS: 20
         IMAGE_SIZE:
-        - 300
-        - 300
+        - 240
+        - 240
         - 3
     outs:
     - path: artifacts/training/model.h5
       hash: md5
-      md5: 7eb2e369ee322aca644cd50346d28780
-      size: 91228152
+      md5: 00d543a6ba553935aface107c90e7cee
+      size: 94856992
   evaluation:
     cmd: python src/shoes_brand_classification/pipeline/stage04_evaluation.py
     deps:
@@ -93,8 +93,8 @@ stages:
       nfiles: 825
     - path: artifacts/training/model.h5
       hash: md5
-      md5: 7eb2e369ee322aca644cd50346d28780
-      size: 91228152
+      md5: 00d543a6ba553935aface107c90e7cee
+      size: 94856992
     - path: config/config.yaml
       hash: md5
       md5: e54f7af98660bda971d96edd159ffcd8
@@ -107,11 +107,11 @@ stages:
       params.yaml:
         BATCH_SIZE: 32
         IMAGE_SIZE:
-        - 300
-        - 300
+        - 240
+        - 240
         - 3
     outs:
     - path: scores.json
       hash: md5
-      md5: f866ac8df2fc1c19fad70d56ddee6ffe
+      md5: 0fe2e777ee246f633575ce5911c4e7e6
       size: 72

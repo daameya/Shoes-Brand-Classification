@@ -12,7 +12,7 @@ class PrepareBaseModel:
 
     
     def get_base_model(self):
-        self.model = tf.keras.applications.InceptionV3(
+        self.model = tf.keras.applications.ResNet50V2(
             input_shape=self.config.params_image_size,
             weights=self.config.params_weights,
             include_top=self.config.params_include_top
@@ -32,10 +32,10 @@ class PrepareBaseModel:
                 model.trainable = False
 
         x = model.output
-        x = tf.keras.layers.Flatten()(x)
-        #x = tf.keras.layers.GlobalAveragePooling2D()(x)
+        #x = tf.keras.layers.Inputs()(x)
+        x = tf.keras.layers.GlobalAveragePooling2D()(x)
         #x = tf.keras.layers.Dropout(0.15)(x)
-        x = tf.keras.layers.Dense(1024, activation='relu')(x)
+        #x = tf.keras.layers.Dense(1024, activation='relu')(x)
         
         prediction = tf.keras.layers.Dense(
             units=classes,
@@ -48,7 +48,7 @@ class PrepareBaseModel:
         )
 
         full_model.compile(
-            optimizer=tf.keras.optimizers.SGD(learning_rate=learning_rate),
+            optimizer=tf.keras.optimizers.Adam(learning_rate=learning_rate),
             loss=tf.keras.losses.CategoricalCrossentropy(),
             metrics=["accuracy"]
         )
