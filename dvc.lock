@@ -15,17 +15,17 @@ stages:
       params.yaml:
         CLASSES: 3
         IMAGE_SIZE:
-        - 224
-        - 224
+        - 300
+        - 300
         - 3
         INCLUDE_TOP: false
-        LEARNING_RATE: 0.01
+        LEARNING_RATE: 0.0001
         WEIGHTS: imagenet
     outs:
     - path: artifacts/prepare_base_model
       hash: md5
-      md5: bb03c26b1986b291072066f132820553.dir
-      size: 118154912
+      md5: 8b7bba224331e1e2c63d8a2a6b0c0f12.dir
+      size: 177725168
       nfiles: 2
   data_ingestion:
     cmd: python src/shoes_brand_classification/pipeline/stage01_data_ingestion.py
@@ -54,8 +54,8 @@ stages:
       nfiles: 825
     - path: artifacts/prepare_base_model
       hash: md5
-      md5: bb03c26b1986b291072066f132820553.dir
-      size: 118154912
+      md5: 8b7bba224331e1e2c63d8a2a6b0c0f12.dir
+      size: 177725168
       nfiles: 2
     - path: config/config.yaml
       hash: md5
@@ -72,17 +72,17 @@ stages:
     params:
       params.yaml:
         AUGMENTATION: true
-        BATCH_SIZE: 16
-        EPOCHS: 4
+        BATCH_SIZE: 32
+        EPOCHS: 10
         IMAGE_SIZE:
-        - 224
-        - 224
+        - 300
+        - 300
         - 3
     outs:
     - path: artifacts/training/model.h5
       hash: md5
-      md5: 1804ef91453afa48568b4cc66922e069
-      size: 59538224
+      md5: 7eb2e369ee322aca644cd50346d28780
+      size: 91228152
   evaluation:
     cmd: python src/shoes_brand_classification/pipeline/stage04_evaluation.py
     deps:
@@ -93,8 +93,8 @@ stages:
       nfiles: 825
     - path: artifacts/training/model.h5
       hash: md5
-      md5: 1804ef91453afa48568b4cc66922e069
-      size: 59538224
+      md5: 7eb2e369ee322aca644cd50346d28780
+      size: 91228152
     - path: config/config.yaml
       hash: md5
       md5: e54f7af98660bda971d96edd159ffcd8
@@ -105,13 +105,13 @@ stages:
       size: 914
     params:
       params.yaml:
-        BATCH_SIZE: 16
+        BATCH_SIZE: 32
         IMAGE_SIZE:
-        - 224
-        - 224
+        - 300
+        - 300
         - 3
     outs:
     - path: scores.json
       hash: md5
-      md5: 41cc1657fcf407f8d38b042802d56e0d
+      md5: f866ac8df2fc1c19fad70d56ddee6ffe
       size: 72

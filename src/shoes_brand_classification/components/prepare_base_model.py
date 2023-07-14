@@ -12,7 +12,7 @@ class PrepareBaseModel:
 
     
     def get_base_model(self):
-        self.model = tf.keras.applications.vgg16.VGG16(
+        self.model = tf.keras.applications.InceptionV3(
             input_shape=self.config.params_image_size,
             weights=self.config.params_weights,
             include_top=self.config.params_include_top
@@ -31,11 +31,16 @@ class PrepareBaseModel:
             for layer in model.layers[:-freeze_till]:
                 model.trainable = False
 
-        flatten_in = tf.keras.layers.Flatten()(model.output)
+        x = model.output
+        x = tf.keras.layers.Flatten()(x)
+        #x = tf.keras.layers.GlobalAveragePooling2D()(x)
+        #x = tf.keras.layers.Dropout(0.15)(x)
+        x = tf.keras.layers.Dense(1024, activation='relu')(x)
+        
         prediction = tf.keras.layers.Dense(
             units=classes,
             activation="softmax"
-        )(flatten_in)
+        )(x)
 
         full_model = tf.keras.models.Model(
             inputs=model.input,
