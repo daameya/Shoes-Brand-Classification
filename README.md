@@ -13,9 +13,6 @@
 
 # AZURE-CICD-Deployment-with-Github-Actions
 
-## Save pass:
-
-
 ## Run from terminal:
 
 docker build -t shoesapp.azurecr.io/shoesclassification:latest .
