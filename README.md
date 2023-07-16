@@ -14,7 +14,6 @@
 # AZURE-CICD-Deployment-with-Github-Actions
 
 ## Save pass:
-vHJmHPAtCx//70uHEyXro6w4QofCIQavmLMIoFGnjk+ACRCac6T7
 
 
 ## Run from terminal:
