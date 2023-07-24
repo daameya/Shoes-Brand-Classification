@@ -12,7 +12,7 @@ class PrepareBaseModel:
 
     
     def get_base_model(self):
-        self.model = tf.keras.applications.ResNet50V2(
+        self.model = tf.keras.applications.vgg16.VGG16(
             input_shape=self.config.params_image_size,
             weights=self.config.params_weights,
             include_top=self.config.params_include_top
@@ -27,13 +27,13 @@ class PrepareBaseModel:
         if freeze_all:
             for layer in model.layers:
                 model.trainable = False
-        elif (freeze_till is not None) and (freeze_till > 0):
+        elif (freeze_till is not None) and (freeze_till > 3):
             for layer in model.layers[:-freeze_till]:
                 model.trainable = False
 
         x = model.output
-        #x = tf.keras.layers.Inputs()(x)
-        x = tf.keras.layers.GlobalAveragePooling2D()(x)
+        x = tf.keras.layers.Flatten()(x)
+        #x = tf.keras.layers.GlobalAveragePooling2D()(x)
         #x = tf.keras.layers.Dropout(0.15)(x)
         #x = tf.keras.layers.Dense(1024, activation='relu')(x)
         
