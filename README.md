@@ -12,7 +12,7 @@
 
 <div id="header">
   <h1>
-    <img src="Screenshots\shoe_classification_webpage.jpg" alt="Image classification" width="1000" align="center"/>
+    <img src="screenshots\shoe_classification_webpage.jpg" alt="Image classification" width="1000" align="center"/>
   </h1>
 </div>
 
@@ -44,7 +44,7 @@ Key Features:
 
 <div id="header">
   <h1>
-    <img src="Screenshots\Deployment.jpg" alt="Web deployment using github actions" width="1000" align="center"/>
+    <img src="screenshots\Deployment.jpg" alt="Web deployment using github actions" width="1000" align="center"/>
   </h1>
 </div>
 
